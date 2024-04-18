@@ -23,10 +23,12 @@ app.get("/users", (req, res) => {
   res.send(users);
 });
 
-app.post("/user", (req, res) => {
-  const user = req.body;
-  res.send(user);
-  console.log(user);
+app.post("/users", (req, res) => {
+  const newUser = req.body; // body এর মধ্যে user থাকবে।
+  newUser.id = users.length + 1; // id set করা হয়েছে, নতুন যে user আসবে সে আগের array length থেকে ১ বেশি হবে।
+
+  users.push(newUser);
+  res.send(newUser);
 });
 
 app.listen(port, () => {
